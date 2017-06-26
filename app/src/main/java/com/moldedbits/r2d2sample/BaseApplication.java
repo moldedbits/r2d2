@@ -2,10 +2,6 @@ package com.moldedbits.r2d2sample;
 
 import android.app.Application;
 
-import com.moldedbits.rahul.keystore.BuildConfig;
-
-import timber.log.Timber;
-
 /**
  * Created by Rahul
  * on 22-06-2017.
