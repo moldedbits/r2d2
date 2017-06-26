@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Keystore</string>
+    <string name="app_name">R2D2 Sample App</string>
     <string name="storing_secrets">Storing Secrets</string>
     <string name="username">Username</string>
     <string name="password">Password</string>

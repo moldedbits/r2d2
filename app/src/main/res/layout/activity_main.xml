@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.moldedbits.rahul.keystore.com.moldedbits.r2d2sample.MainActivity">
+    android:padding="@dimen/padding_2x"
+    tools:context="com.moldedbits.r2d2sample.MainActivity">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:fontFamily="monospace"
         android:text="@string/storing_secrets"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+        android:textAlignment="center" />
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
@@ -54,25 +53,5 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="@string/decrypt" />
-
-    <TextView
-        android:id="@+id/tv_encrypted"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/textview_border"
-        android:hint="@string/encrypted_text"
-        android:padding="5dp"
-        android:textAlignment="center" />
-
-    <TextView
-        android:id="@+id/tv_decrypted"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/textview_border"
-        android:hint="@string/decrypted_text"
-        android:padding="5dp"
-        android:textAlignment="center" />
 
 </LinearLayout>

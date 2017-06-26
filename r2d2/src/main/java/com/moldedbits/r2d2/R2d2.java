@@ -8,6 +8,7 @@ import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyProperties;
 import android.support.annotation.RequiresApi;
 import android.util.Base64;
+import android.util.Log;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -43,7 +44,6 @@ import javax.crypto.spec.GCMParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import javax.security.auth.x500.X500Principal;
 
-import timber.log.Timber;
 
 
 /**
@@ -73,6 +73,8 @@ public class R2d2 {
     private static final String AES = "AES";
     private KeyStore keyStore;
     private final Context context;
+
+    private static String TAG = "R2D2";
 
     /**
      * Constructor It initializes and decides whether the android version is after M (API level 23) or before it. Accordingly it generates a
@@ -117,7 +119,7 @@ public class R2d2 {
         } catch (IOException | NoSuchAlgorithmException | CertificateException
                 | KeyStoreException | NoSuchProviderException
                 | InvalidAlgorithmParameterException e) {
-            Timber.e(e.getMessage());
+            Log.e(TAG,"", e);
         }
     }
 
@@ -142,7 +144,7 @@ public class R2d2 {
                 | InvalidKeyException | InvalidAlgorithmParameterException
                 | NoSuchPaddingException | BadPaddingException | IllegalBlockSizeException
                 | UnsupportedEncodingException e) {
-            Timber.e(e.getMessage());
+            Log.e(TAG,"", e);
         }
         return null;
     }
@@ -169,7 +171,7 @@ public class R2d2 {
                 | UnrecoverableKeyException | KeyStoreException | IllegalBlockSizeException
                 | InvalidAlgorithmParameterException | InvalidKeyException
                 | UnsupportedEncodingException e) {
-            Timber.e(e.getMessage());
+            Log.e(TAG,"", e);
         }
         return null;
     }
@@ -206,7 +208,7 @@ public class R2d2 {
             }
         } catch (NoSuchAlgorithmException | KeyStoreException | NoSuchProviderException
                 | InvalidAlgorithmParameterException | CertificateException | IOException e) {
-            Timber.e(e.getMessage());
+            Log.e(TAG,"", e);
         }
     }
 
@@ -271,7 +273,7 @@ public class R2d2 {
         } catch (UnrecoverableEntryException | NoSuchAlgorithmException
                 | InvalidKeyException | NoSuchProviderException
                 | KeyStoreException | NoSuchPaddingException | IOException e) {
-            Timber.e(e.getMessage());
+            Log.e(TAG,"", e);
         }
         return null;
     }
@@ -308,7 +310,7 @@ public class R2d2 {
         } catch (UnrecoverableEntryException | NoSuchAlgorithmException | KeyStoreException
                 | NoSuchPaddingException | InvalidKeyException | IOException
                 | NoSuchProviderException e) {
-            Timber.e(e.getMessage());
+            Log.e(TAG,"", e);
         }
         return null;
     }
@@ -333,7 +335,7 @@ public class R2d2 {
             return Base64.encodeToString(encryptedData, Base64.DEFAULT);
         } catch (UnsupportedEncodingException | NoSuchAlgorithmException | InvalidKeyException
                 | BadPaddingException | IllegalBlockSizeException | NoSuchPaddingException e) {
-            Timber.e(e.getMessage());
+            Log.e(TAG,"", e);
         }
         return null;
     }
@@ -358,7 +360,7 @@ public class R2d2 {
             return new String(decryptedData, UTF);
         } catch (UnsupportedEncodingException | NoSuchAlgorithmException | InvalidKeyException
                 | BadPaddingException | IllegalBlockSizeException | NoSuchPaddingException e) {
-            Timber.e(e.getMessage());
+            Log.e(TAG,"", e);
         }
         return null;
     }

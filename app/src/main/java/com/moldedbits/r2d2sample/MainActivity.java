@@ -3,7 +3,6 @@ package com.moldedbits.r2d2sample;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.moldedbits.rahul.keystore.R;
 
@@ -19,11 +18,6 @@ public class MainActivity extends AppCompatActivity {
     @Bind(R.id.et_password)
     EditText etPassword;
 
-    @Bind(R.id.tv_encrypted)
-    TextView tvEncrypted;
-
-    @Bind(R.id.tv_decrypted)
-    TextView tvDecrypted;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +35,5 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.btn_decrypt)
     public void onDecrypt() {
         String password = LocalStorage.getInstance().getPassword();
-        tvDecrypted.setText(password);
     }
 }
