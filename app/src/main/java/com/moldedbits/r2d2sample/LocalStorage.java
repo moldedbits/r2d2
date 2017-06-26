@@ -1,10 +1,9 @@
-package com.example.rahul.keystore;
+package com.moldedbits.r2d2sample;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.widget.TextView;
 
-import butterknife.Bind;
+import com.moldedbits.r2d2.R2d2;
 
 /**
  * Created by Rahul
@@ -13,14 +12,11 @@ import butterknife.Bind;
 
 class LocalStorage {
 
-    @Bind(R.id.tv_encrypted)
-    TextView tvEncrypted;
-
-    private static final String PREFS_NAME = "com.directenergy.SharedPrefs";
+    private static final String PREFS_NAME = "com.moldedbits.r2d2sample.SharedPrefs";
     private static final String KEY_USERNAME = "key_username";
     private static final String KEY_PASSWORD = "key_password";
     private final SharedPreferences preferences;
-    private final KeyStoreUtils keyStoreUtils;
+    private final R2d2 r2d2;
 
     private static final LocalStorage instance = new LocalStorage();
 
@@ -29,43 +25,38 @@ class LocalStorage {
     }
 
     /**
-     * Constructor Which create a shared preference in which data can be stored and also an object of KeyStoreUtils class.
+     * Constructor Which create a shared preference in which data can be stored and also an
+     * object of R2D2 class.
      */
     private LocalStorage() {
         preferences = BaseApplication.getInstance().getSharedPreferences(PREFS_NAME,
                 Context.MODE_PRIVATE);
-        keyStoreUtils = new KeyStoreUtils();
+        r2d2 = new R2d2(BaseApplication.getInstance().getApplicationContext());
     }
 
 
     /**
-     * returns the username from the memory.
-     *
-     * @return
+     * returns the username from Shared Preference.
      */
     public String getUsername() {
         return preferences.getString(KEY_USERNAME, null);
     }
 
     /**
-     * Stores the username in the memory.
-     *
-     * @param username
+     * Stores the username in the Shared Preference.
      */
-    public void setUsername(String username) {
+    void setUsername(String username) {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString(KEY_USERNAME, username);
         editor.apply();
     }
 
     /**
-     * returns the password in decrypted form i.e. in actual form from the memory.
-     *
-     * @return
+     * returns the password in decrypted form i.e. in actual form from the Shared Preference.
      */
     String getPassword() {
         String password = preferences.getString(KEY_PASSWORD, null);
-        String decrypted = keyStoreUtils.decryptData(password);
+        String decrypted = r2d2.decryptData(password);
         if (decrypted != null && !decrypted.equalsIgnoreCase("")) {
             password = decrypted;
         }
@@ -73,13 +64,11 @@ class LocalStorage {
     }
 
     /**
-     * Stores the password in encrypted form in the memory.
-     *
-     * @param password
+     * Stores the password in encrypted form in the Shared Preference.
      */
     @SuppressWarnings("PMD.AvoidReassigningParameters")
     void setPassword(String password) {
-        String encrypted = keyStoreUtils.encryptData(password);
+        String encrypted = r2d2.encryptData(password);
         if (encrypted != null && !encrypted.equalsIgnoreCase("")) {
             password = encrypted;
         }
@@ -89,10 +78,9 @@ class LocalStorage {
     }
 
     /**
-     * Clears data stored in Shared Perference
+     * Clears data stored in Shared Preference.
      */
     void clear() {
         preferences.edit().clear().apply();
     }
-
 }

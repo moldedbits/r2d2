@@ -1,4 +1,4 @@
-package com.example.rahul.keystore;
+package com.moldedbits.r2d2;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -8,6 +8,7 @@ import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyProperties;
 import android.support.annotation.RequiresApi;
 import android.util.Base64;
+import android.util.Log;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -43,7 +44,6 @@ import javax.crypto.spec.GCMParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import javax.security.auth.x500.X500Principal;
 
-import timber.log.Timber;
 
 
 /**
@@ -63,7 +63,7 @@ import timber.log.Timber;
  * http://nelenkov.blogspot.in/2012/04/using-password-based-encryption-on.html
  */
 
-class KeyStoreUtils {
+public class R2d2 {
 
     private static final String ANDROID_KEY_STORE = "AndroidKeyStore";
     private static final String AES_MODE = "AES/GCM/NoPadding";
@@ -74,12 +74,14 @@ class KeyStoreUtils {
     private KeyStore keyStore;
     private final Context context;
 
+    private static String TAG = "R2D2";
+
     /**
      * Constructor It initializes and decides whether the android version is after M (API level 23) or before it. Accordingly it generates a
      * random key according to the api level.
      */
-    KeyStoreUtils() {
-        context = BaseApplication.getInstance();
+    public R2d2(final Context context) {
+        this.context = context;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             generateKeyStoreM();
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
@@ -117,7 +119,7 @@ class KeyStoreUtils {
         } catch (IOException | NoSuchAlgorithmException | CertificateException
                 | KeyStoreException | NoSuchProviderException
                 | InvalidAlgorithmParameterException e) {
-            Timber.e(e.getMessage());
+            Log.e(TAG,"", e);
         }
     }
 
@@ -142,7 +144,7 @@ class KeyStoreUtils {
                 | InvalidKeyException | InvalidAlgorithmParameterException
                 | NoSuchPaddingException | BadPaddingException | IllegalBlockSizeException
                 | UnsupportedEncodingException e) {
-            Timber.e(e.getMessage());
+            Log.e(TAG,"", e);
         }
         return null;
     }
@@ -169,7 +171,7 @@ class KeyStoreUtils {
                 | UnrecoverableKeyException | KeyStoreException | IllegalBlockSizeException
                 | InvalidAlgorithmParameterException | InvalidKeyException
                 | UnsupportedEncodingException e) {
-            Timber.e(e.getMessage());
+            Log.e(TAG,"", e);
         }
         return null;
     }
@@ -206,7 +208,7 @@ class KeyStoreUtils {
             }
         } catch (NoSuchAlgorithmException | KeyStoreException | NoSuchProviderException
                 | InvalidAlgorithmParameterException | CertificateException | IOException e) {
-            Timber.e(e.getMessage());
+            Log.e(TAG,"", e);
         }
     }
 
@@ -217,7 +219,7 @@ class KeyStoreUtils {
      * @param input data to be encrypted
      * @return encrypted data
      */
-    String encryptData(String input) {
+    public String encryptData(String input) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             return encryptDataM(input);
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
@@ -234,7 +236,7 @@ class KeyStoreUtils {
      * @param input data to be decrypted
      * @return decrypted data
      */
-    String decryptData(String input) {
+    public String decryptData(String input) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             return decryptDataM(input);
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
@@ -271,7 +273,7 @@ class KeyStoreUtils {
         } catch (UnrecoverableEntryException | NoSuchAlgorithmException
                 | InvalidKeyException | NoSuchProviderException
                 | KeyStoreException | NoSuchPaddingException | IOException e) {
-            Timber.e(e.getMessage());
+            Log.e(TAG,"", e);
         }
         return null;
     }
@@ -308,7 +310,7 @@ class KeyStoreUtils {
         } catch (UnrecoverableEntryException | NoSuchAlgorithmException | KeyStoreException
                 | NoSuchPaddingException | InvalidKeyException | IOException
                 | NoSuchProviderException e) {
-            Timber.e(e.getMessage());
+            Log.e(TAG,"", e);
         }
         return null;
     }
@@ -333,7 +335,7 @@ class KeyStoreUtils {
             return Base64.encodeToString(encryptedData, Base64.DEFAULT);
         } catch (UnsupportedEncodingException | NoSuchAlgorithmException | InvalidKeyException
                 | BadPaddingException | IllegalBlockSizeException | NoSuchPaddingException e) {
-            Timber.e(e.getMessage());
+            Log.e(TAG,"", e);
         }
         return null;
     }
@@ -358,7 +360,7 @@ class KeyStoreUtils {
             return new String(decryptedData, UTF);
         } catch (UnsupportedEncodingException | NoSuchAlgorithmException | InvalidKeyException
                 | BadPaddingException | IllegalBlockSizeException | NoSuchPaddingException e) {
-            Timber.e(e.getMessage());
+            Log.e(TAG,"", e);
         }
         return null;
     }
