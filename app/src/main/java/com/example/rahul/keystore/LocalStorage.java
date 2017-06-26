@@ -2,9 +2,6 @@ package com.example.rahul.keystore;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.widget.TextView;
-
-import butterknife.Bind;
 
 /**
  * Created by Rahul
@@ -12,9 +9,6 @@ import butterknife.Bind;
  */
 
 class LocalStorage {
-
-    @Bind(R.id.tv_encrypted)
-    TextView tvEncrypted;
 
     private static final String PREFS_NAME = "com.directenergy.SharedPrefs";
     private static final String KEY_USERNAME = "key_username";

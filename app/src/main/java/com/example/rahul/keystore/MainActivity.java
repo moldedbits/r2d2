@@ -2,7 +2,6 @@ package com.example.rahul.keystore;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -16,10 +15,6 @@ public class MainActivity extends AppCompatActivity {
     EditText etUsername;
     @Bind(R.id.et_password)
     EditText etPassword;
-    @Bind(R.id.btn_encrypt)
-    Button btnEncrypt;
-    @Bind(R.id.btn_decrypt)
-    Button btnDecrypt;
     @Bind(R.id.tv_encrypted)
     TextView tvEncrypted;
     @Bind(R.id.tv_decrypted)
