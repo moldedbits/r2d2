@@ -88,5 +88,4 @@ class LocalStorage {
     void clear() {
         preferences.edit().clear().apply();
     }
-
 }
