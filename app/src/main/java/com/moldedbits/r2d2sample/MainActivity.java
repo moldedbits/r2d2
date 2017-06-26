@@ -15,10 +15,13 @@ public class MainActivity extends AppCompatActivity {
 
     @Bind(R.id.et_username)
     EditText etUsername;
+
     @Bind(R.id.et_password)
     EditText etPassword;
+
     @Bind(R.id.tv_encrypted)
     TextView tvEncrypted;
+
     @Bind(R.id.tv_decrypted)
     TextView tvDecrypted;
 

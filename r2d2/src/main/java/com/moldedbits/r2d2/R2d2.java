@@ -63,7 +63,7 @@ import timber.log.Timber;
  * http://nelenkov.blogspot.in/2012/04/using-password-based-encryption-on.html
  */
 
-class R2d2 {
+public class R2d2 {
 
     private static final String ANDROID_KEY_STORE = "AndroidKeyStore";
     private static final String AES_MODE = "AES/GCM/NoPadding";
@@ -78,8 +78,8 @@ class R2d2 {
      * Constructor It initializes and decides whether the android version is after M (API level 23) or before it. Accordingly it generates a
      * random key according to the api level.
      */
-    R2d2() {
-        context = BaseApplication.getInstance();
+    public R2d2(final Context context) {
+        this.context = context;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             generateKeyStoreM();
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
@@ -217,7 +217,7 @@ class R2d2 {
      * @param input data to be encrypted
      * @return encrypted data
      */
-    String encryptData(String input) {
+    public String encryptData(String input) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             return encryptDataM(input);
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
@@ -234,7 +234,7 @@ class R2d2 {
      * @param input data to be decrypted
      * @return decrypted data
      */
-    String decryptData(String input) {
+    public String decryptData(String input) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             return decryptDataM(input);
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {

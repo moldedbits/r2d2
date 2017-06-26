@@ -20,10 +20,6 @@ public class BaseApplication extends Application {
         super.onCreate();
         instance = this;
 
-        if (BuildConfig.DEBUG) {
-            Timber.plant(new Timber.DebugTree());
-        }
-
         // fresh start
         LocalStorage.getInstance().clear();
     }
