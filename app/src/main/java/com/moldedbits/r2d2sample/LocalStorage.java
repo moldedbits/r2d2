@@ -1,4 +1,4 @@
-package com.example.rahul.keystore;
+package com.moldedbits.r2d2sample;
 
 import android.content.Context;
 import android.content.SharedPreferences;

@@ -1,9 +1,12 @@
-package com.example.rahul.keystore;
+package com.moldedbits.r2d2sample;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.moldedbits.rahul.keystore.R;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;

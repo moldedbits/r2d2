@@ -1,4 +1,4 @@
-package com.example.rahul.keystore;
+package com.moldedbits.r2d2;
 
 import org.junit.Test;
 

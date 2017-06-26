@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.rahul.keystore.MainActivity">
+    tools:context="com.moldedbits.rahul.keystore.com.moldedbits.r2d2sample.MainActivity">
 
     <TextView
         android:layout_width="match_parent"

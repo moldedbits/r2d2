@@ -1,4 +1,4 @@
-package com.example.r2d2;
+package com.moldedbits.r2d2sample;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -63,7 +63,7 @@ import timber.log.Timber;
  * http://nelenkov.blogspot.in/2012/04/using-password-based-encryption-on.html
  */
 
-class R2d2 {
+class KeyStoreUtils {
 
     private static final String ANDROID_KEY_STORE = "AndroidKeyStore";
     private static final String AES_MODE = "AES/GCM/NoPadding";
@@ -78,7 +78,7 @@ class R2d2 {
      * Constructor It initializes and decides whether the android version is after M (API level 23) or before it. Accordingly it generates a
      * random key according to the api level.
      */
-    R2d2() {
+    KeyStoreUtils() {
         context = BaseApplication.getInstance();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             generateKeyStoreM();

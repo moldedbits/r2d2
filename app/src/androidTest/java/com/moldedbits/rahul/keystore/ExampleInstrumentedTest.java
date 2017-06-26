@@ -1,4 +1,4 @@
-package com.example.r2d2;
+package com.moldedbits.rahul.keystore;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.r2d2.test", appContext.getPackageName());
+        assertEquals("com.example.rahul.keystore", appContext.getPackageName());
     }
 }

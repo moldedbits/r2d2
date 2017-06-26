@@ -1,6 +1,8 @@
-package com.example.rahul.keystore;
+package com.moldedbits.r2d2sample;
 
 import android.app.Application;
+
+import com.moldedbits.rahul.keystore.BuildConfig;
 
 import timber.log.Timber;
 
