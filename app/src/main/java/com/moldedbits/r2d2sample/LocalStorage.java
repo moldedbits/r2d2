@@ -36,14 +36,14 @@ class LocalStorage {
 
 
     /**
-     * returns the username from sharedprefs
+     * returns the username from Shared Preference.
      */
     public String getUsername() {
         return preferences.getString(KEY_USERNAME, null);
     }
 
     /**
-     * Stores the username in the shared prefs
+     * Stores the username in the Shared Preference.
      */
     void setUsername(String username) {
         SharedPreferences.Editor editor = preferences.edit();
@@ -52,7 +52,7 @@ class LocalStorage {
     }
 
     /**
-     * returns the password in decrypted form i.e. in actual form from the memory.
+     * returns the password in decrypted form i.e. in actual form from the Shared Preference.
      */
     String getPassword() {
         String password = preferences.getString(KEY_PASSWORD, null);
@@ -64,7 +64,7 @@ class LocalStorage {
     }
 
     /**
-     * Stores the password in encrypted form in the memory.
+     * Stores the password in encrypted form in the Shared Preference.
      */
     @SuppressWarnings("PMD.AvoidReassigningParameters")
     void setPassword(String password) {
@@ -78,7 +78,7 @@ class LocalStorage {
     }
 
     /**
-     * Clears data stored in Shared Perference
+     * Clears data stored in Shared Preference.
      */
     void clear() {
         preferences.edit().clear().apply();

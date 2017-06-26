@@ -7,4 +7,6 @@
     <string name="decrypt">Decrypt</string>
     <string name="encrypted_text">Encrypted Text</string>
     <string name="decrypted_text">Decrypted Text</string>
+    <string name="data_encryption_toast">Your data has been encrypted.</string>
+    <string name="data_decryption_toast">Your data has been decrypted.</string>
 </resources>
