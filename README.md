@@ -2,6 +2,18 @@
 
 R2D2 Android uses **Android Keystore** to store passwords and other sensitive information for different API versions in an encrypted form.  
 
+## Gradle
+    compile 'com.moldedbits.r2d2:r2d2:1.0.1`
+
+## Maven
+    <dependency>
+      <groupId>com.moldedbits.r2d2</groupId>
+      <artifactId>r2d2</artifactId>
+      <version>1.0.1</version>
+      <type>pom</type>
+    </dependency>
+
+
 ## Implementaion
 The android KeyStore handles the tasks like random key generation and securely storing them. It acts like a secure container.  
 Now depending on the API version, the sensitive information is handled accordingly.  
