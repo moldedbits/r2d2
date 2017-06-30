@@ -3,7 +3,7 @@
 R2D2 Android uses **Android Keystore** to store passwords and other sensitive information for different API versions in an encrypted form.  
 
 ## Gradle
-    compile 'com.moldedbits.r2d2:r2d2:1.0.1`
+    compile 'com.moldedbits.r2d2:r2d2:1.0.1'
 
 ## Maven
     <dependency>
