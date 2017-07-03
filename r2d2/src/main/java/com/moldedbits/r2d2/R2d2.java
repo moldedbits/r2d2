@@ -67,7 +67,7 @@ public class R2d2 {
 
     private static final String ANDROID_KEY_STORE = "AndroidKeyStore";
     private static final String AES_MODE = "AES/GCM/NoPadding";
-    private static final String KEY_ALIAS = "direct_energy_alias";
+    private static final String KEY_ALIAS = "mb_key_alias";
     private static final String FIXED_IV = "fixed_direct";
     private static final String UTF = "UTF-8";
     private static final String AES = "AES";
