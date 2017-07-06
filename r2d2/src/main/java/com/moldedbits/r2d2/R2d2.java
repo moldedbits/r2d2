@@ -75,18 +75,18 @@ public class R2d2 {
 
     private static String TAG = "R2D2";
 
-    private String key_alias;
+    private String keyAlias;
 
     /**
      * Constructor It initializes and decides whether the android version is after M (API level 23)
      * or before it. Accordingly it generates a
      * random key according to the api level.
-     * @param key_alias Anybody can get the keys using this key_alias so it is highly recommended
+     * @param keyAlias Anybody can get the keys using this keyAlias so it is highly recommended
      *                  to get this either from user or from api.
      */
-    public R2d2(final Context context, String key_alias) {
+    public R2d2(final Context context, String keyAlias) {
         this.context = context;
-        this.key_alias = key_alias;
+        this.keyAlias = keyAlias;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             generateKeyStoreM();
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
@@ -107,13 +107,13 @@ public class R2d2 {
         try {
             keyStore = KeyStore.getInstance(ANDROID_KEY_STORE);
             keyStore.load(null);
-            if (!keyStore.containsAlias(key_alias)) {
+            if (!keyStore.containsAlias(keyAlias)) {
                 KeyGenerator keyGenerator;
 
                 keyGenerator = KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES, ANDROID_KEY_STORE);
 
                 keyGenerator.init(
-                        new KeyGenParameterSpec.Builder(key_alias,
+                        new KeyGenParameterSpec.Builder(keyAlias,
                                 KeyProperties.PURPOSE_ENCRYPT | KeyProperties.PURPOSE_DECRYPT)
                                 .setBlockModes(KeyProperties.BLOCK_MODE_GCM)
                                 .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
@@ -139,7 +139,7 @@ public class R2d2 {
     private String encryptDataM(String input) {
         try {
             byte[] bytes = input.getBytes(UTF);
-            SecretKey key = (SecretKey) keyStore.getKey(key_alias, null);
+            SecretKey key = (SecretKey) keyStore.getKey(keyAlias, null);
 
             Cipher c = Cipher.getInstance(AES_MODE);
             c.init(Cipher.ENCRYPT_MODE, key, new GCMParameterSpec(128, FIXED_IV.getBytes()));
@@ -168,7 +168,7 @@ public class R2d2 {
 
             //byte[] bytes =
             Cipher c = Cipher.getInstance(AES_MODE);
-            SecretKey key = (SecretKey) keyStore.getKey(key_alias, null);
+            SecretKey key = (SecretKey) keyStore.getKey(keyAlias, null);
             c.init(Cipher.DECRYPT_MODE, key, new GCMParameterSpec(128, FIXED_IV.getBytes()));
             byte[] decodedBytes = c.doFinal(decode);
             return new String(decodedBytes, UTF);
@@ -196,12 +196,12 @@ public class R2d2 {
         try {
             keyStore = KeyStore.getInstance(ANDROID_KEY_STORE);
             keyStore.load(null);
-            if (!keyStore.containsAlias(key_alias)) {
+            if (!keyStore.containsAlias(keyAlias)) {
                 Calendar start = Calendar.getInstance();
                 Calendar end = Calendar.getInstance();
                 end.add(Calendar.YEAR, 20);
                 KeyPairGeneratorSpec spec = new KeyPairGeneratorSpec.Builder(context)
-                        .setAlias(key_alias)
+                        .setAlias(keyAlias)
                         .setSubject(new X500Principal("CN=Sample Name, O=Android Authority"))
                         .setSerialNumber(BigInteger.ONE)
                         .setStartDate(start.getTime())
@@ -261,7 +261,7 @@ public class R2d2 {
     private String encryptDataJ(String inputText) {
         try {
             KeyStore.PrivateKeyEntry privateKeyEntry
-                    = (KeyStore.PrivateKeyEntry) keyStore.getEntry(key_alias, null);
+                    = (KeyStore.PrivateKeyEntry) keyStore.getEntry(keyAlias, null);
             RSAPublicKey publicKey = (RSAPublicKey) privateKeyEntry.getCertificate().getPublicKey();
 
             Cipher input = Cipher.getInstance("RSA/ECB/PKCS1Padding", "AndroidOpenSSL");
@@ -292,7 +292,7 @@ public class R2d2 {
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     private String decryptDataJ(String inputText) {
         try {
-            KeyStore.PrivateKeyEntry privateKeyEntry = (KeyStore.PrivateKeyEntry) keyStore.getEntry(key_alias, null);
+            KeyStore.PrivateKeyEntry privateKeyEntry = (KeyStore.PrivateKeyEntry) keyStore.getEntry(keyAlias, null);
             RSAPrivateKey privateKey = (RSAPrivateKey) privateKeyEntry.getPrivateKey();
 
             Cipher output = Cipher.getInstance("RSA/ECB/PKCS1Padding", "AndroidOpenSSL");
@@ -328,7 +328,7 @@ public class R2d2 {
      */
     private String encryptDataDefault(String input) {
         try {
-            byte[] key = key_alias.getBytes(UTF);
+            byte[] key = keyAlias.getBytes(UTF);
             MessageDigest sha = MessageDigest.getInstance("SHA-1");
             key = sha.digest(key);
             key = Arrays.copyOf(key, 16);
@@ -353,7 +353,7 @@ public class R2d2 {
      */
     private String decryptDataDefault(String input) {
         try {
-            byte[] key = key_alias.getBytes(UTF);
+            byte[] key = keyAlias.getBytes(UTF);
             MessageDigest sha = MessageDigest.getInstance("SHA-1");
             key = sha.digest(key);
             key = Arrays.copyOf(key, 16);
