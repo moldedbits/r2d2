@@ -15,6 +15,7 @@ class LocalStorage {
     private static final String PREFS_NAME = "com.moldedbits.r2d2sample.SharedPrefs";
     private static final String KEY_USERNAME = "key_username";
     private static final String KEY_PASSWORD = "key_password";
+    private static final String KEY_ALIAS = "key_alias";
     private final SharedPreferences preferences;
     private final R2d2 r2d2;
 
@@ -31,7 +32,7 @@ class LocalStorage {
     private LocalStorage() {
         preferences = BaseApplication.getInstance().getSharedPreferences(PREFS_NAME,
                 Context.MODE_PRIVATE);
-        r2d2 = new R2d2(BaseApplication.getInstance().getApplicationContext());
+        r2d2 = new R2d2(BaseApplication.getInstance().getApplicationContext(), KEY_ALIAS);
     }
 
 
